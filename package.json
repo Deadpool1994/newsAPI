@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Deadpool1994/newsAPI#readme",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.20"
   }
 }
