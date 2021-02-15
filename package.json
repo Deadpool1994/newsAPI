@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Deadpool1994/newsAPI#readme",
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.5.0",
+    "aws-sdk": "^2.843.0",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.20",
     "node-fetch": "^2.6.1",
