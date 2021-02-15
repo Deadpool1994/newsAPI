@@ -6,7 +6,11 @@ AWS.config.update({
 });
 
 var dynamodb = new AWS.DynamoDB();
+var docClient = new AWS.DynamoDB.DocumentClient();
 
+/**
+ * Params for table COVID
+ */
 var params = {
     TableName : "COVID",
     KeySchema: [       
@@ -52,3 +56,29 @@ dynamodb.createTable(params, function(err, data) {
         console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
     }
 });
+
+
+var saveBulkData = async (data) => {
+
+    data.forEach(function(article) {
+        var param = {
+            TableName: "COVID",
+            Item: {
+                "url":  article.url,
+                "title": article.title,
+                "publisher_name": article.publisher_name,
+                "published_date": article.published_date
+            }
+        };
+    
+        docClient.put(param, function(err) {
+           if (err) {
+               console.error("Unable to add article", article.title, ". Error JSON:", JSON.stringify(err, null, 2));
+           } else {
+               console.log("PutItem succeeded:", article.title);
+           }
+        });
+    });
+}
+
+
