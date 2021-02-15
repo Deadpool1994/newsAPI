@@ -1,0 +1,28 @@
+{
+  "name": "newsapi",
+  "version": "1.0.0",
+  "description": "A simple news fetch code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deadpool1994/newsAPI.git"
+  },
+  "author": "deadpool1994 <mrami@roambee.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Deadpool1994/newsAPI/issues"
+  },
+  "homepage": "https://github.com/Deadpool1994/newsAPI#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.5.0",
+    "aws-sdk": "^2.843.0",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "xml2js": "^0.4.23"
+  }
+}

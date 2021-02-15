@@ -1,0 +1,13 @@
+{
+  // The intent of this file is everyone can run the code easily in VScode 
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "newsAPI",
+      "program": "${workspaceFolder}/index.js",
+      "args": ["COVID","CANADA","48"]
+    }
+  ]
+}
