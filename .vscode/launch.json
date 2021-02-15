@@ -7,7 +7,7 @@
       "request": "launch",
       "name": "newsAPI",
       "program": "${workspaceFolder}/index.js",
-      "args": ["COVID","CANADA","48"]
+      "args": ["COVID","CA","48"]
     }
   ]
 }

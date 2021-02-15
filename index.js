@@ -7,13 +7,13 @@ console.log("DB: ",db_lib);
 // Fetch aeguments for topic, region, period
 var myArgs = process.argv.slice(2);
 const TOPIC = _.get(myArgs,'0',"COVID");              //TOPIC
-const REGION = _.get(myArgs,'1',"CANADA");            //COUNTRY
+const REGION = _.get(myArgs,'1',"CA");                //COUNTRY
 const PERIOD = _.get(myArgs,'2',48);                  //PERIOD in hour
 
 var parseString = require('xml2js').parseString;
 
-let url = `https://news.google.com/rss/search?q=%20%22${TOPIC}%22%20when%3A${PERIOD}h&cr=CA&tdm=nws&hl=en-CA&gl=${REGION}&ceid=CA:en`;
-
+let url = `https://news.google.com/rss/search?q=%20%22${TOPIC}%22%20when%3A${PERIOD}h&cr=${REGION}&tdm=nws&hl=en-CA&gl=${REGION}&ceid=${REGION}:en`;
+console.log(`the url to fetch data is ${url}`);
 
 (async function(){
 
@@ -28,7 +28,7 @@ let url = `https://news.google.com/rss/search?q=%20%22${TOPIC}%22%20when%3A${PER
             publisher_name: _.get(article,'source.0._',null)
           }
         });
-        //console.log(articles);
+
         await db_lib.saveBulkData(articles);
     });
 
