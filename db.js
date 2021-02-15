@@ -1,8 +1,10 @@
-var AWS = require("aws-sdk");
+require('dotenv').config();         //require all the env variables
 
+var AWS = require("aws-sdk");
+console.log(process.env);
 AWS.config.update({
-  region: "us-west-2",
-  endpoint: "http://localhost:8000"
+  region: process.env.aws_region,
+  endpoint: process.env.endpoint
 });
 
 var dynamodb = new AWS.DynamoDB();
@@ -50,10 +52,12 @@ var params = {
 };
 
 dynamodb.createTable(params, function(err, data) {
-    if (err && err.code == 'ResourceInUseException') {
+    if (!err && err.code == 'ResourceInUseException') {
         console.log(`table COVID already existed.`);
     }else if (err) {
         console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2));
+        // exit the code as the DB table doesn't exist
+        process.exit(1);
     } else {
         console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
     }
