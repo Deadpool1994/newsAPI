@@ -50,14 +50,19 @@ var params = {
 };
 
 dynamodb.createTable(params, function(err, data) {
-    if (err) {
+    if (err && err.code == 'ResourceInUseException') {
+        console.log(`table COVID already existed.`);
+    }else if (err) {
         console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2));
     } else {
         console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
     }
 });
 
-
+/**
+ * Insert the bulk article data one by one
+ * @param {*} data 
+ */
 var saveBulkData = async (data) => {
 
     data.forEach(function(article) {
@@ -79,6 +84,10 @@ var saveBulkData = async (data) => {
            }
         });
     });
+}
+
+module.exports = {
+    saveBulkData: saveBulkData
 }
 
 
